@@ -16,7 +16,7 @@ namespace Movie_Api.Controllers
 
         [HttpGet]
         [Route("Getallmovie")]
-        public List<Movie> Getallmovie()
+        public IEnumerable<Movie> Getallmovie()
         {
            List<Movie> movies = movieDBContext.Movies.ToList();
             return movies;
@@ -62,14 +62,14 @@ namespace Movie_Api.Controllers
             return RedirectToAction("Getallmovie");
         }
 
-        [HttpGet]
+        [HttpPost]
         [Route("Editmovie/{id}")]
 
         
-        public IActionResult editmovie(Movie movie)
+        public IActionResult editmovie(Movie movie , int id)
         {
 
-            var MovieDetail = movieDBContext.Movies.Where(x=>x.MovieId == movie.MovieId).FirstOrDefault();
+            var MovieDetail = movieDBContext.Movies.Where(x=>x.MovieId == id).FirstOrDefault();
             if (MovieDetail != null)
             {
                 MovieDetail.Movie_Name = movie.Movie_Name;
@@ -78,7 +78,7 @@ namespace Movie_Api.Controllers
                 MovieDetail.Rating = movie.Rating;
                 MovieDetail.Lead_Actor = movie.Lead_Actor;
                 MovieDetail.Gnere_id = movie.Gnere_id;
-                movieDBContext.Update(movie);
+                
 
 
                 movieDBContext.SaveChanges();
