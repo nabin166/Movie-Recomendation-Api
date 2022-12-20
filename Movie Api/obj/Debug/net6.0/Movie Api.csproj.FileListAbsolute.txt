@@ -10,14 +10,8 @@ C:\Users\DELL\Desktop\.net project\Movie Api\Movie Api\bin\Debug\net6.0\Microsof
 C:\Users\DELL\Desktop\.net project\Movie Api\Movie Api\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Abstractions.dll
 C:\Users\DELL\Desktop\.net project\Movie Api\Movie Api\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Relational.dll
 C:\Users\DELL\Desktop\.net project\Movie Api\Movie Api\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.SqlServer.dll
-C:\Users\DELL\Desktop\.net project\Movie Api\Movie Api\bin\Debug\net6.0\Microsoft.Extensions.Caching.Abstractions.dll
 C:\Users\DELL\Desktop\.net project\Movie Api\Movie Api\bin\Debug\net6.0\Microsoft.Extensions.Caching.Memory.dll
 C:\Users\DELL\Desktop\.net project\Movie Api\Movie Api\bin\Debug\net6.0\Microsoft.Extensions.DependencyInjection.dll
-C:\Users\DELL\Desktop\.net project\Movie Api\Movie Api\bin\Debug\net6.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
-C:\Users\DELL\Desktop\.net project\Movie Api\Movie Api\bin\Debug\net6.0\Microsoft.Extensions.Logging.dll
-C:\Users\DELL\Desktop\.net project\Movie Api\Movie Api\bin\Debug\net6.0\Microsoft.Extensions.Logging.Abstractions.dll
-C:\Users\DELL\Desktop\.net project\Movie Api\Movie Api\bin\Debug\net6.0\Microsoft.Extensions.Options.dll
-C:\Users\DELL\Desktop\.net project\Movie Api\Movie Api\bin\Debug\net6.0\Microsoft.Extensions.Primitives.dll
 C:\Users\DELL\Desktop\.net project\Movie Api\Movie Api\bin\Debug\net6.0\Microsoft.Identity.Client.dll
 C:\Users\DELL\Desktop\.net project\Movie Api\Movie Api\bin\Debug\net6.0\Microsoft.IdentityModel.JsonWebTokens.dll
 C:\Users\DELL\Desktop\.net project\Movie Api\Movie Api\bin\Debug\net6.0\Microsoft.IdentityModel.Logging.dll

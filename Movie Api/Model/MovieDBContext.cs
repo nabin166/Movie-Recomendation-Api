@@ -4,13 +4,17 @@ namespace Movie_Api.Model
 {
     public partial class MovieDBContext : DbContext
     {
+       /* public MovieDBContext()
+        {
+
+        }*/
         public MovieDBContext(DbContextOptions options):base(options)
         {
 
         }
 
-        public DbSet<Movie> Movies { get; set; }
-        public DbSet<Genre> Genres { get; set; }
+        public virtual DbSet<Movie> Movies { get; set; } = null!;
+        public virtual DbSet<Genre> Genres { get; set; } = null!;
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

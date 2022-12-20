@@ -16,7 +16,7 @@ namespace Movie_Api.Controllers
 
         [HttpGet]
         [Route("Getallmovie")]
-        public IEnumerable<Movie> Getallmovie()
+        public List<Movie> Getallmovie()
         {
            List<Movie> movies = movieDBContext.Movies.ToList();
             return movies;
@@ -78,6 +78,7 @@ namespace Movie_Api.Controllers
                 MovieDetail.Rating = movie.Rating;
                 MovieDetail.Lead_Actor = movie.Lead_Actor;
                 MovieDetail.Gnere_id = movie.Gnere_id;
+                movieDBContext.Update(movie);
 
 
                 movieDBContext.SaveChanges();

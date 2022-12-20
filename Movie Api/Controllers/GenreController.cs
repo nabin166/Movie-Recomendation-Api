@@ -15,7 +15,7 @@ namespace Movie_Api.Controllers
             this.movieDBContext = movieDBConetxt;
         }
 
-       [HttpGet]
+         [HttpGet]
         [Route("Getallgenre")]
         public IEnumerable<Genre> Getallmovie()
         {
@@ -25,14 +25,14 @@ namespace Movie_Api.Controllers
 
         [HttpGet]
         [Route("Getonegenre/{id}")]
-        public IEnumerable<Movie> Getonegenre(int id)
+        public IEnumerable<Genre> Getonegenre(int id)
         {
-            //   var MovieDetail = movieDBContext.Movies.Find(id);
-            var MovieDetail = movieDBContext.Movies.Where(x => x.MovieId == id).ToList();
+           // List<Genre> MovieDetail = movieDBContext.Movies.Find(id);
+             List<Genre> genr = movieDBContext.Genres.Where(x => x.Genre_Id == id).ToList();
+            return genr;
 
 
 
-            return MovieDetail;
         }
 
         [HttpDelete]
@@ -63,18 +63,19 @@ namespace Movie_Api.Controllers
             return RedirectToAction("Getallgenre");
         }
 
-        [HttpGet]
+        [HttpPost]
         [Route("Editgenre/{id}")]
 
 
-        public IActionResult editmovie(Genre genre)
+        public IActionResult editmovie(Genre genre , int id)
         {
 
-            var genreDetail = movieDBContext.Genres.Where(x => x.Genre_Id == genre.Genre_Id).FirstOrDefault();
+            var genreDetail = movieDBContext.Genres.Where(x => x.Genre_Id == id).FirstOrDefault();
             if (genreDetail != null)
             {
 
                 genreDetail.Genre_Name = genre.Genre_Name;
+                
 
                 movieDBContext.SaveChanges();
                 return RedirectToAction("Getallgenre");
