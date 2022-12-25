@@ -3,7 +3,9 @@
 *@
 @{
 }
-<table class="table  ">
+<h5><a asp-controller="Test" asp-action="Creategenre">Create Genre</a></h5>
+
+<table class="table" id="myTable">
     <thead>
 <tr class="border-1">
     <th>Genre ID</th>
@@ -25,4 +27,19 @@
   </tbody>
 
 </table>
+
+
+    @section scripts
+    {
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css"/>
+        
+    <script type="text/javascript" src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
+    <script>
+        $(document).ready( function () {
+         $('#myTable').DataTable();
+        } );
+    </script>
+    }
+ 
+
 

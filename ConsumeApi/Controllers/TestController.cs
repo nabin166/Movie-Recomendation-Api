@@ -8,6 +8,8 @@ namespace ConsumeApi.Controllers
 {
     public class TestController : Controller
     {
+
+        //Get Request Handle
         public IActionResult Index( List<Genrevm> genrevms)
         {
 
@@ -64,6 +66,28 @@ namespace ConsumeApi.Controllers
             }
 
             return View();
+        }
+
+        //Post Request Handle
+        public IActionResult Creategenre()
+        {
+            return View();
+
+        }
+
+        [HttpPost]
+        public IActionResult Postgenre(Genre genre , string Genrename)
+        {
+            var client = new HttpClient();
+            client.BaseAddress = new Uri("https://localhost:7021/api/Genre/Addgenre");
+
+            genre.Genre_Name = Genrename;
+
+            var result = client.PostAsJsonAsync(client.BaseAddress, genre);
+
+
+                
+            return RedirectToAction("Index");
         }
     }
 }
