@@ -16,12 +16,13 @@
 <tbody>
 
 
- @foreach(var student in ViewBag.Result)
+ @foreach(var item in ViewBag.Result)
   {            
       <tr>    
-        <td>@student.Genre_Id</td>
-        <td>@student.Genre_Name</td>
-        <td><a class="text-success" href="/"><i class="fa-regular fa-pen-to-square"></i></a> <a class=" text-danger" href="/" ><i class="fa-solid fa-trash"></i></a></td>
+        <td>@item.Genre_Id</td>
+        <td>@item.Genre_Name</td>
+        
+        <td><a class="text-success" asp-controller="Test" asp-action="Edit" asp-route-id="@item.Genre_Id" ><i class="fa-regular fa-pen-to-square"></i></a> <a class=" text-danger" asp-route-id = "@item.Genre_Id" asp-action="Remove" asp-controller="Test" ><i class="fa-solid fa-trash"></i></a></td>
       </tr>        
   }
   </tbody>

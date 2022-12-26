@@ -17,7 +17,7 @@ namespace Movie_Api.Controllers
 
          [HttpGet]
         [Route("Getallgenre")]
-        public IEnumerable<Genre> Getallmovie()
+        public async Task<IEnumerable<Genre>> Getallmovie()
         {
             List<Genre> genres = movieDBContext.Genres.ToList();
             return genres;

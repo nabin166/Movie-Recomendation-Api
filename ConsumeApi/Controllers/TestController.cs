@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Movie_Api.Model;
 using Newtonsoft.Json;
-using System.Text.Json;
 
 namespace ConsumeApi.Controllers
 {
@@ -10,7 +9,7 @@ namespace ConsumeApi.Controllers
     {
 
         //Get Request Handle
-        public IActionResult Index( List<Genrevm> genrevms)
+        public async Task<IActionResult> Index(List<Genrevm> genrevms)
         {
 
 
@@ -33,11 +32,11 @@ namespace ConsumeApi.Controllers
 
                 var data = resulttask.Result;
 
-                 List<Genrevm> UserList = JsonConvert.DeserializeObject<List<Genrevm>>(data);
+                List<Genrevm> UserList = JsonConvert.DeserializeObject<List<Genrevm>>(data);
 
 
                 //  list = JsonConvert.DeserializeObject(data);
-                
+
 
                 // viewmModel add
                 foreach (var item in UserList)
@@ -48,7 +47,7 @@ namespace ConsumeApi.Controllers
                     genrevm.Genre_Name = item.Genre_Name;
                     genrevms.Add(genrevm);
 
-                    
+
                 }
 
 
@@ -69,25 +68,115 @@ namespace ConsumeApi.Controllers
         }
 
         //Post Request Handle
-        public IActionResult Creategenre()
+        public async Task<IActionResult> Creategenre()
         {
             return View();
 
         }
 
         [HttpPost]
-        public IActionResult Postgenre(Genre genre , string Genrename)
+        public async Task<IActionResult> Postgenre(Genre genre, string Genrename)
         {
             var client = new HttpClient();
             client.BaseAddress = new Uri("https://localhost:7021/api/Genre/Addgenre");
 
             genre.Genre_Name = Genrename;
 
-            var result = client.PostAsJsonAsync(client.BaseAddress, genre);
+            var result = await client.PostAsJsonAsync(client.BaseAddress, genre);
 
 
-                
+
             return RedirectToAction("Index");
         }
+
+
+        
+        public async  Task<IActionResult> Remove(int id)
+        {
+            var client = new HttpClient();
+            client.BaseAddress = new Uri("https://localhost:7021/api/Genre/Removegenre/");
+
+            client.DeleteAsync(id.ToString()).Wait();
+           
+            
+            return RedirectToAction("Index");
+        }
+
+        [HttpGet]
+        //Getone from ---id---
+        public async Task<IActionResult> Edit(List<Genrevm> genrevms , int id)
+        {
+
+
+
+
+            var client = new HttpClient();
+            client.BaseAddress = new Uri("https://localhost:7021/api/Genre/");
+
+
+            //Get 
+            var task = client.GetAsync("Getonegenre/"+id);
+
+            task.Wait();
+            var result = task.Result;
+
+            if (result.IsSuccessStatusCode)
+            {
+                var resulttask = result.Content.ReadAsStringAsync();
+                resulttask.Wait();
+
+                var data = resulttask.Result;
+
+                List<Genrevm> UserList = JsonConvert.DeserializeObject<List<Genrevm>>(data);
+
+
+                //  list = JsonConvert.DeserializeObject(data);
+
+
+                // viewmModel add
+                foreach (var item in UserList)
+                {
+
+                    Genrevm genrevm = new Genrevm();
+                    genrevm.Genre_Id = item.Genre_Id;
+                    genrevm.Genre_Name = item.Genre_Name;
+                    genrevms.Add(genrevm);
+
+
+                }
+
+
+
+                ViewBag.Result = genrevms;
+
+
+
+
+                // List<da> c =  JsonSerializer.Deserialize<string>(data);
+
+
+
+                return View();
+            }
+
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Editgenre(Genre genre, string Genrename , int id)
+        {
+            var client = new HttpClient();
+            client.BaseAddress = new Uri("https://localhost:7021/api/Genre/Editgenre/"+id);
+
+            genre.Genre_Name = Genrename;
+
+            var result = await client.PostAsJsonAsync(client.BaseAddress, genre);
+
+
+
+            return RedirectToAction("Index");
+        }
+
+
     }
 }
